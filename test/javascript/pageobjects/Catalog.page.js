@@ -11,6 +11,11 @@ class CatalogPage extends Page {
     get addToCartButton() { return $('#content > div.product-list > div > div.right > div > input')};
     get cartWithItem() { return $('#cart-total')};
     get checkoutLink() { return $('#cart > div.content > div.checkout > a:nth-child(2)')};
+    get topLoginButton() { return $('#welcome > table > tbody > tr > td:nth-child(1) > a > input')};
+    get userNameField() { return $('#content > div.login-content > div.right > form > div > input[type=text]:nth-child(4)')};
+    get passwordField() { return $('#content > div.login-content > div.right > form > div > input[type=password]:nth-child(9)')};
+    get bottomLoginButton() { return $('#content > div.login-content > div.right > form > div > input.button')}
+    get userName() { return $('#welcome > a:nth-child(1)')}
     
     /**
      * Method to click first item
@@ -20,6 +25,11 @@ class CatalogPage extends Page {
         this.firstItem.click();
     }
 
+    clickTopLoginButton() {
+        utilObj.waitForDefaultTimeOut()
+        this.topLoginButton.click();
+    }
+
     clickOpenCartTotal() {
         utilObj.waitForDefaultTimeOut();
         this.cartWithItem.click();
@@ -27,6 +37,24 @@ class CatalogPage extends Page {
         browser.pause(1000);
         this.checkoutLink.click();
         browser.pause(5000);
+    }
+
+    fillUserNameField() {
+        utilObj.waitForDefaultTimeOut();
+        this.userNameField.click();
+        this.userNameField.clearValue();
+        this.userNameField.setValue('uulu1@gmail.com');
+    }
+    fillPasswordField() {
+        utilObj.waitForDefaultTimeOut();
+        this.passwordField.click();
+        this.passwordField.clearValue();
+        this.passwordField.setValue('123456');
+    }
+
+    clickBottomLoginButton() {
+        utilObj.waitForDefaultTimeOut();
+        this.bottomLoginButton.click();
     }
 
   /*  verifyCheckoutLinkVisible() {
@@ -39,6 +67,11 @@ class CatalogPage extends Page {
      clickAddToCartButton() {
         utilObj.waitForDefaultTimeOut();
         this.addToCartButton.click();
+    }
+
+    clickUserName() {
+        utilObj.waitForDefaultTimeOut();
+        this.userName.click();
     }
 
     /**
@@ -97,6 +130,18 @@ class CatalogPage extends Page {
            // super.dashboardLink.scroll();
             super.dashboardLink.click();
             //allure.addDescription("open the server instance");
+        }
+    }
+
+    verifyUserLoggedIn() {
+        utilObj.waitForDefaultTimeOut()
+        if (this.logOutLink.isDisplayed()==1 ) 
+        {
+           this.logOutLink.click();
+        }
+        else
+        {
+            throw "Link does not exist"
         }
     }
 

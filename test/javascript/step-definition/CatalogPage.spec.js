@@ -17,16 +17,34 @@ When(/^User clicks on Item link$/,()=>{
     catalogobject.clickFirstItem();
 });
 
+When(/^User clicks on "Logige sisse"$/,()=>{
+    catalogobject.clickTopLoginButton();
+});
+
+When(/^User enters valid credentials into login form$/,()=>{
+    catalogobject.fillUserNameField();
+    catalogobject.fillPasswordField();
+});
+
+When(/^User clicks form login button$/,()=>{
+    catalogobject.clickBottomLoginButton();
+});
+
 When(/^User clicks on Add to cart item button$/,()=>{
     catalogobject.clickAddToCartButton();
 });
 
+Then(/^User is logged in$/,()=>{
+    catalogobject.clickUserName();
+});
+
 Then(/^User moves to Catalog page$/,()=>{
     catalogobject.verifyCatalogPage();
-})
+});
+
 Then(/^item should be added to the cart$/, ()=>{
     catalogobject.clickOpenCartTotal();  
-})
+});
 
 When(/^user credentials should be entered$/,()=>{
     checkoutobject.loginAsRegisteredUser();
